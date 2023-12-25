@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Profile</title>
+    <link rel="icon" type="image/x-icon" href="../images/logo.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="customerProfile.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <nav onscroll="handling()">
+      <a href="../main2.html">
+        <img src="../images/logo.svg" alt="logo" class="main-page"
+      /></a>
+      <img src="../images/icons8-cart-96.png" alt="cart" id="cart" />
+    </nav>
+    <!-- BODY -->
+    <!-- Left Nav -->
+    <div class="adminContainer">
+      <div class="sidebar">
+        <div class="ourDashboard">
+          <div class="icon">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="dashtxt">Your Profile</div>
+        </div>
+        <button class="btn cell" id="pending" onclick="showContent('orders')">
+          Your Orders
+        </button>
+        <button
+          class="btn cell wishlist-btn"
+          id="categories"
+          onclick="showContent('wishlist')"
+        >
+          Wishlist
+        </button>
+        <button
+          class="btn cell"
+          id="products"
+          onclick="showContent('profile-info')"
+        >
+          Profile Information
+        </button>
+        <button class="btn btnHome" id="home">Return to Home Page</button>
+      </div>
+      <!-- Main Container -->
+      <div class="adminContent">
+        <div class="orders-content active-content">
+          <!-- Content for Orders -->
+          <h2>Your Orders</h2>
+          <br />
+          <br />
+          <!-- Add content specific to Orders here -->
+          <div class="orders-cards">
+            <!-- <div class="order-card-header">
+              <div class="order-details">
+                Order Placed: <br />10 December 2023
+              </div>
+
+              <div class="order-details">Total: <br />EGP 116.50</div>
+              <div class="order-details">Order Number: <br />123456789</div>
+            </div>
+            <div class="order-card-body">
+              <h3 class="order-details">Order Status: Pending</h3>
+              <div class="order-contents">
+                <img
+                  class="product-img order-details"
+                  src="../images/51kzIp0mUnL._AC_SY741_.jpg"
+                />
+                <div class="order-details">
+                  Mens Casual Premium Slim Fit T-Shirts
+                </div>
+                <div class="order-details">
+                  Quantity: <br />
+                  2
+                </div>
+                <div class="order-details">
+                  Total Price: <br />
+                  $ 109.95
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <hr />
+        </div>
+        <div class="profile-info-content">
+          <!-- Content for Profile Info -->
+          <h2>Your Profile Information</h2>
+          <br /><br />
+          <!-- Add content specific to Profile Info here -->
+          <div class="profile-content">
+            <form id="profileForm">
+              <div class="form-group elem1">
+                <span>Username:</span>
+                <input
+                  class="form-field"
+                  type="text"
+                  id="username"
+                  value=""
+                  disabled
+                />
+              </div>
+              <br /><br />
+              <div class="form-group elem2">
+                <span>Email:</span>
+                <input
+                  class="form-field"
+                  type="email"
+                  id="email"
+                  value=""
+                  disabled
+                />
+              </div>
+              <br /><br />
+              <div class="form-group elem3">
+                <span>First Name:</span>
+                <input
+                  class="form-field"
+                  type="text"
+                  id="fname"
+                  value=""
+                  disabled
+                />
+              </div>
+
+              <br /><br />
+              <div class="form-group elem4">
+                <span>Last Name:</span>
+                <input
+                  class="form-field"
+                  type="text"
+                  id="lname"
+                  value=""
+                  disabled
+                />
+              </div>
+
+              <br /><br />
+              <div class="form-group elem5">
+                <span>Date of Birth:</span>
+                <input
+                  class="form-field"
+                  type="text"
+                  id="dob"
+                  value=""
+                  disabled
+                />
+              </div>
+
+              <br /><br />
+              <div class="form-group elem6">
+                <span>Sex:</span>
+                <input
+                  class="form-field"
+                  type="text"
+                  id="sex"
+                  value=""
+                  disabled
+                />
+              </div>
+
+              <br /><br />
+              <div class="form-group elem7">
+                <span style="color: black">Phone:</span>
+                <input
+                  class="form-field"
+                  type="tel"
+                  id="phone"
+                  value=""
+                  style="color: black"
+                />
+              </div>
+
+              <br /><br />
+              <div class="form-group elem8">
+                <span style="color: black">Address:</span>
+                <input
+                  class="form-field"
+                  type="text"
+                  id="address"
+                  value=""
+                  style="color: black"
+                  required
+                />
+              </div>
+              <br />
+
+              <div class="button form-group" id="updateButton">
+                <div class="container">
+                  <div class="tick"></div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="wishlist-content">
+          <!-- Content for Wishlist -->
+          <h2>Your Wishlist</h2>
+          <!-- Add content specific to Wishlist here -->
+          <div class="wishlist">
+            <div class="products-container" id="main-container">
+              <!-- products goes here dynamically -->
+            </div>
+            <div class="product-description" style="display: none"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FOOTER -->
+    <footer>
+      <p>Copyright&copy; Ecommerce shop 2023. All rights reserved</p>
+    </footer>
+    <script src="customerProfile.js"></script>
+    <script type="module">
+      console.log("Script is running");
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        child,
+        get,
+        set,
+        update,
+        remove,
+        push,
+        onValue,
+        query,
+        orderByChild,
+        equalTo,
+      } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCYSCp9ciAbTeM_DYOpOlwRqH33hEfV5pI",
+        authDomain: "ecommerce-iti-5e820.firebaseapp.com",
+        databaseURL:
+          "https://ecommerce-iti-5e820-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "ecommerce-iti-5e820",
+        storageBucket: "ecommerce-iti-5e820.appspot.com",
+        messagingSenderId: "646973727955",
+        appId: "1:646973727955:web:871efec421dc8355bf6026",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase();
+      const auth = getAuth(app);
+      // Function to update user information
+      function updateUserInfo() {
+        // Get the user's ID, phone, and address from the form
+        const userId = UserCreds.uid;
+        const newPhone = document.getElementById("phone").value;
+        const newAddress = document.getElementById("address").value;
+
+        // Update the user's phone and address in the Firebase Realtime Database
+        update(ref(db, "UsersAuthList/" + userId), {
+          phonenumber: newPhone,
+          address: newAddress,
+        })
+          .then(() => {
+            alert("User info updated successfully");
+          })
+          .catch((error) => {
+            alert("Error updating user info: " + error.message);
+          });
+      }
+
+      // Add an event listener to the button when the DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        const updateButton = document.getElementById("updateButton");
+
+        if (updateButton) {
+          updateButton.addEventListener("click", updateUserInfo);
+        }
+      });
+      // ////////////////////////////////////////////////////////////////////////////////
+      // Get the uid of the current logged-in user
+      const uid = UserCreds.uid;
+
+      // Reference to the "orders" node in the database
+      const ordersRef = ref(db, "orders");
+
+      // Function to render orders for the given user
+      const renderUserOrders = (orders) => {
+        const ordersContainer = document.querySelector(".orders-cards");
+
+        // Clear existing content in the orders container
+        ordersContainer.innerHTML = "";
+
+        // Loop through each order
+        for (const orderKey in orders) {
+          const order = orders[orderKey];
+          if (order.uid === uid) {
+            // Create a new order card
+            const orderCard = document.createElement("div");
+            orderCard.classList.add("orders-cards");
+
+            // Set order details
+            const orderDate = new Date(order.date).toLocaleDateString();
+            const orderTotalPrice = parseFloat(order.totalPrice).toFixed(2);
+
+            orderCard.innerHTML = `
+          <div class="order-card-header">
+            <div class="order-details">Order Placed: <br />${orderDate}</div>
+            <div class="order-details">Total: <br />EGP ${orderTotalPrice}</div>
+            <div class="order-details">Order Number: <br />${orderKey}</div>
+          </div>
+          <div class="order-card-body">
+            <h3 class="order-details">Order Status: ${order.status}</h3>
+        `;
+
+            // Loop through each order item
+            order.orderItems.forEach((orderItem) => {
+              const productKey = orderItem.productKey;
+              const quantity = orderItem.quantity;
+
+              // Reference to the "products" node in the database
+              const productsRef = ref(db, `products/${productKey}`);
+
+              // Retrieve product details
+              get(productsRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                  const product = snapshot.val();
+
+                  // Create order contents
+                  const orderContents = document.createElement("div");
+                  orderContents.classList.add("order-contents");
+
+                  orderContents.innerHTML = `
+                <img class="product-img order-details" src="${
+                  product.imageUrl
+                }" />
+                <div class="order-details">${product.productName}</div>
+                <div class="order-details">Quantity: <br />${quantity}</div>
+                <div class="order-details">Total Price: <br />EGP ${(
+                  parseFloat(product.price) * quantity
+                ).toFixed(2)}</div>
+              `;
+
+                  // Append order contents to the order card body
+                  orderCard
+                    .querySelector(".order-card-body")
+                    .appendChild(orderContents);
+                }
+              });
+            });
+
+            // Close the order card
+            orderCard.innerHTML += `</div></div><hr />`;
+
+            // Append the order card to the orders container
+            ordersContainer.appendChild(orderCard);
+          }
+        }
+      };
+
+      // Retrieve all orders from the database
+      get(ref(db, "orders")).then((snapshot) => {
+        if (snapshot.exists()) {
+          const orders = snapshot.val();
+          renderUserOrders(orders);
+        }
+      });
+    </script>
+  </body>
+</html>

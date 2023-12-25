@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>eCommerce Shop</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="icon" type="image/x-icon" href="images/logo.svg" />
+  </head>
+  <body>
+    <nav class="main-nav">
+      <img src="images/logo.svg" alt="logo" class="main-page" />
+      <img src="images/icons8-cart-96.png" alt="cart" id="cart-logo" />
+    </nav>
+    <div class="cart">
+      <div class="relevant">
+        <nav>
+          <p class="cart-title">Shopping Bag (<span id="count">5</span>)</p>
+          <img
+            src="images/right-arrow.png"
+            alt="back arrow"
+            class="backArrow"
+          />
+        </nav>
+        <hr style="width: 90%; color: #f1f2f3" />
+        <div class="cart-items-container">
+          <!-- cart items goes here dynamically -->
+        </div>
+        <div class="cart-footer">
+          <div class="cartFooter-firstRow">
+            <p class="main-total">Total: $109.95</p>
+            <img
+              src="images/delete (2).png"
+              alt="deleta all"
+              class="rubbish-icon"
+            />
+          </div>
+          <div class="cartFooter-btnsContainer">
+            <button class="view-cart cartFooter-btn">View cart</button>
+            <button class="check-out cartFooter-btn">Checkout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero">
+      <div class="hero_header_container">
+        <a href="Signup/signup.html">Signup</a>
+        <a href="Signup/login.html">Login</a>
+        <p class="trend">new trend</p>
+        <h1 class="hero_header">
+          automn sale stylish <span class="womens-word">womens</span>
+        </h1>
+        <p class="discover">discover more</p>
+      </div>
+      <div class="hero_image">
+        <img src="images/woman_hero.png" alt="hero image" />
+      </div>
+    </div>
+    <div class="products-container" id="main-container">
+      <!-- products goes here dynamically -->
+    </div>
+    <div class="product-description" style="display: none">
+      <!-- <div class="desc-image-container">
+                <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="product image">
+            </div>
+            <div class="info-container">
+                <h1 class="desc-product-title">Men's Casual Premium Slim Fit T-Shirts</h1>
+                <p class="desc-product-price">$ 22.2</p>
+                <p class="desc-product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nisi illo neque temporibus sequi? Sunt, impedit aperiam deserunt facilis qui praesentium et modi velit tempora aliquam repudiandae suscipit, ab omnis ullam laborum veritatis recusandae sapiente consectetur cupiditate fugit, commodi dolore.</p>
+                <button class="desc-product-AddButton">Add to cart</button>
+            </div> -->
+    </div>
+    <footer>
+      <p>Copyright&copy; Ecommerce shop 2023. All rights reserved</p>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>

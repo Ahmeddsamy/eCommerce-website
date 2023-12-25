@@ -1,0 +1,200 @@
+{
+  "UsersAuthList": {
+    "02yv5tyeEsbqbVfp7eff5tPRJ6q2": {
+      "address": "Add Address",
+      "birthdate": "1997-08-23",
+      "firstname": "Ahmed",
+      "gender": "male",
+      "lastname": "Samy",
+      "phonenumber": "+201100014333",
+      "role": "customer",
+      "username": "ahmedsamy"
+    },
+    "BpnPPJCnfBQZdsLyLbbQljlOcss1": {
+      "address": "Add Address",
+      "birthdate": "",
+      "firstname": "Admin",
+      "gender": "male",
+      "lastname": "Admin",
+      "phonenumber": "+200000000000",
+      "role": "admin",
+      "username": "admin"
+    },
+    "IO9tdWYVLZVZXauhWji26zfds2m1": {
+      "address": "Add Address",
+      "birthdate": "1996-06-01",
+      "firstname": "Kareem",
+      "gender": "male",
+      "lastname": "Hassan",
+      "phonenumber": "+201100014300",
+      "role": "customer",
+      "username": "kareemhassan"
+    }
+  },
+  "categories": {
+    "-NmSvqSqO9kTZ5T6Vo9G": {
+      "category": "men's clothing",
+      "categoryId": "1"
+    },
+    "-NmSvt9PDmu1-U0UQ_-x": {
+      "category": "jewelery",
+      "categoryId": "2"
+    },
+    "-NmSvvjotKrcuhNmP2IP": {
+      "category": "electronics",
+      "categoryId": "3"
+    },
+    "-NmSw0MqySH4k3RYPl-d": {
+      "category": "women's clothing",
+      "categoryId": "4"
+    }
+  },
+  "orders": {
+    "-NmVDUZgorCFG5isvbe2": {
+      "date": "12/25/2023",
+      "orderItems": [
+        {
+          "productKey": "-NmSwGObLrBujbxfZFkV",
+          "quantity": 2
+        },
+        {
+          "productKey": "-NmSwOOv5duheI0rId-H",
+          "quantity": 1
+        }
+      ],
+      "status": "accepted",
+      "totalPrice": "242.00",
+      "uid": "02yv5tyeEsbqbVfp7eff5tPRJ6q2"
+    },
+    "-NmVDy0C_-BUD4xfDII9": {
+      "date": "12/25/2023",
+      "orderItems": [
+        {
+          "productKey": "-NmSwGObLrBujbxfZFkV",
+          "quantity": 2
+        },
+        {
+          "productKey": "-NmSwOOv5duheI0rId-H",
+          "quantity": 1
+        }
+      ],
+      "status": "accepted",
+      "totalPrice": "242.00",
+      "uid": "02yv5tyeEsbqbVfp7eff5tPRJ6q2"
+    },
+    "-NmVEJgd4TX-gZebnmxB": {
+      "date": "12/25/2023",
+      "orderItems": [
+        {
+          "productKey": "-NmSwGObLrBujbxfZFkV",
+          "quantity": 2
+        },
+        {
+          "productKey": "-NmSwOOv5duheI0rId-H",
+          "quantity": 1
+        }
+      ],
+      "status": "accepted",
+      "totalPrice": "242.00",
+      "uid": "IO9tdWYVLZVZXauhWji26zfds2m1"
+    },
+    "-NmVdAmwKhDzdTckmzRE": {
+      "date": "12/25/2023",
+      "orderItems": [
+        {
+          "productKey": "-NmSwGObLrBujbxfZFkV",
+          "quantity": 2
+        },
+        {
+          "productKey": "-NmSwOOv5duheI0rId-H",
+          "quantity": 1
+        }
+      ],
+      "status": "rejected",
+      "totalPrice": "242.00",
+      "uid": "02yv5tyeEsbqbVfp7eff5tPRJ6q2"
+    },
+    "-NmVdP5nAMy6Ip5CxGxo": {
+      "date": "12/25/2023",
+      "orderItems": [
+        {
+          "productKey": "-NmSwGObLrBujbxfZFkV",
+          "quantity": 2
+        },
+        {
+          "productKey": "-NmSwOOv5duheI0rId-H",
+          "quantity": 1
+        }
+      ],
+      "status": "rejected",
+      "totalPrice": "242.00",
+      "uid": "02yv5tyeEsbqbVfp7eff5tPRJ6q2"
+    },
+    "-NmVdm42Pl0iTmsgKGyo": {
+      "date": "12/25/2023",
+      "orderItems": [
+        {
+          "productKey": "-NmSwGObLrBujbxfZFkV",
+          "quantity": 2
+        },
+        {
+          "productKey": "-NmSwOOv5duheI0rId-H",
+          "quantity": 1
+        }
+      ],
+      "status": "pending",
+      "totalPrice": "242.00",
+      "uid": "02yv5tyeEsbqbVfp7eff5tPRJ6q2"
+    }
+  },
+  "products": {
+    "-NmSwGObLrBujbxfZFkV": {
+      "category": "1",
+      "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      "imageUrl": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      "price": "110",
+      "productName": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      "quantity": "120"
+    },
+    "-NmSwOOv5duheI0rId-H": {
+      "category": "1",
+      "description": "lim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+      "imageUrl": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+      "price": "22",
+      "productName": "Mens Casual Premium Slim Fit T-Shirts",
+      "quantity": "259"
+    },
+    "-NmSwUmkplgYxuCsfWXj": {
+      "category": "1",
+      "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+      "imageUrl": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+      "price": "56",
+      "productName": "Mens Cotton Jacket",
+      "quantity": "500"
+    },
+    "-NmSwlZD6RcjdMwbZnOn": {
+      "category": "1",
+      "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
+      "imageUrl": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+      "price": "16",
+      "productName": "Mens Casual Slim Fit",
+      "quantity": "430"
+    },
+    "-NmSwut0hdJ6OdjvqWIA": {
+      "category": "2",
+      "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
+      "imageUrl": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+      "price": "695",
+      "productName": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+      "quantity": "400"
+    },
+    "-NmSx1H15aMyvb91FVn7": {
+      "category": "2",
+      "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+      "imageUrl": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
+      "price": "168",
+      "productName": "Solid Gold Petite Micropave",
+      "quantity": "70"
+    }
+  }
+}
