@@ -69,7 +69,7 @@
                 Order Placed: <br />10 December 2023
               </div>
 
-              <div class="order-details">Total: <br />EGP 116.50</div>
+              <div class="order-details">Total: <br />$ 116.50</div>
               <div class="order-details">Order Number: <br />123456789</div>
               <button class="accept-btn">Accept</button>
               <button class="reject-btn">Reject</button>
@@ -280,9 +280,8 @@
         // Populate the category select input
         populateCategorySelect(categories);
       });
-
       // Function to handle product form submission
-      const handleProductFormSubmit = (event) => {
+      const handleProductFormSubmit = async (event) => {
         event.preventDefault();
 
         // Get product form values
@@ -293,23 +292,36 @@
         const quantity = document.getElementById("quantity").value;
         const imageUrl = document.getElementById("imgurl").value;
 
-        // Validate product form data (add your own validation logic as needed)
+        // Get a reference to the 'products' node in your Firebase database
+        const productsRef = ref(db, "products");
 
-        // Create a new product object
+        // Retrieve current products to find the maximum ID
+        const snapshot = await get(productsRef);
+        let maxId = 0;
+
+        // Iterate through existing products to find the maximum ID
+        snapshot.forEach((childSnapshot) => {
+          const productId = childSnapshot.val().id;
+          maxId = Math.max(maxId, productId);
+        });
+
+        // Increment the maximum ID by 1 for the new product
+        const newProductId = maxId + 1;
+
+        // Create a new product object with the updated ID
         const newProduct = {
+          id: newProductId.toString(),
           productName,
           description,
           category,
           price,
           quantity,
           imageUrl,
+          id: newProductId.toString(), // Ensure the ID is a string
         };
 
-        // Get a reference to the 'products' node in your Firebase database
-        const productsRef = ref(db, "products");
-
-        // Use push function to add the new product
-        const newProductRef = push(productsRef);
+        // Use set function to add the new product with the manually set ID
+        const newProductRef = child(productsRef, newProductId.toString());
         set(newProductRef, newProduct);
 
         // Clear product form fields
@@ -319,6 +331,7 @@
       // Attach the product form submission handler to the product form
       const productForm = document.getElementById("productForm");
       productForm.addEventListener("submit", handleProductFormSubmit);
+
       // //////////////////////////////////////////////////////////////////////////////////////////
       const ordersContainer = document.querySelector(".orders-content");
 
@@ -355,7 +368,7 @@
       <div class="order-details">
         Order Placed: <br />${order.date}
       </div>
-      <div class="order-details">Total: <br />EGP ${order.totalPrice}</div>
+      <div class="order-details">Total: <br />$ ${order.totalPrice}</div>
       <div class="order-details">Order Number: <br />${orderKey}</div>
       <button class="accept-btn" data-order-key="${orderKey}">Accept</button>
       <button class="reject-btn" data-order-key="${orderKey}">Reject</button>
@@ -380,7 +393,7 @@
         <img class="product-img order-details" src="${product.imageUrl}" />
         <div class="order-details">${product.productName}</div>
         <div class="order-details">Quantity: <br />${orderItem.quantity}</div>
-        <div class="order-details">Total Price: <br />EGP ${product.price}</div>
+        <div class="order-details">Total Price: <br />$ ${product.price}</div>
       `;
 
           orderCardBody.appendChild(orderContents);
@@ -460,7 +473,7 @@
                     <div class="order-details">
                         Order Placed: <br />${order.date}
                     </div>
-                    <div class="order-details">Total: <br />EGP ${order.totalPrice}</div>
+                    <div class="order-details">Total: <br />$ ${order.totalPrice}</div>
                     <div class="order-details">Order Number: <br />${orderId}</div>
                 `;
 
@@ -482,7 +495,7 @@
                         <img class="product-img order-details" src="${product.imageUrl}" />
                         <div class="order-details">${product.productName}</div>
                         <div class="order-details">Quantity: <br />${orderItem.quantity}</div>
-                        <div class="order-details">Total Price: <br />EGP ${product.price}</div>
+                        <div class="order-details">Total Price: <br />$ ${product.price}</div>
                     `;
 
             orderCardBody.appendChild(orderContents);

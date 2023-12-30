@@ -15,11 +15,19 @@
     <nav class="main-nav">
       <img src="images/logo.svg" alt="logo" class="main-page" />
       <img src="images/icons8-cart-96.png" alt="cart" id="cart-logo" />
+      <img
+        src="images/user-regular.svg"
+        alt=" wish list"
+        class="wish-list-icon"
+        id="profile"
+      />
+
+      <button id="signout" class="log-out-btn">Log Out</button>
     </nav>
     <div class="cart">
       <div class="relevant">
         <nav>
-          <p class="cart-title">Shopping Bag (<span id="count">5</span>)</p>
+          <p class="cart-title">Shopping Bag (<span id="count">0</span>)</p>
           <img
             src="images/right-arrow.png"
             alt="back arrow"
@@ -32,7 +40,9 @@
         </div>
         <div class="cart-footer">
           <div class="cartFooter-firstRow">
-            <p class="main-total">Total: $109.95</p>
+            <p class="main-total">
+              Total: $ <span id="total_count">0.00</span>
+            </p>
             <img
               src="images/delete (2).png"
               alt="deleta all"
@@ -40,7 +50,6 @@
             />
           </div>
           <div class="cartFooter-btnsContainer">
-            <button class="view-cart cartFooter-btn">View cart</button>
             <button class="check-out cartFooter-btn">Checkout</button>
           </div>
         </div>
@@ -55,37 +64,31 @@
         </h1>
         <p class="discover">discover more</p>
         <br />
-        <a id="order" style="cursor: pointer" "
-          >Make New Order</a
-        ><br />
-        <a id="profile" style="cursor: pointer" onclick="redirectToProfile()"
-          >Your Profile</a
-        ><br />
-        <a id="signout" style="cursor: pointer">Signout</a>
       </div>
       <div class="hero_image">
         <img src="images/woman_hero.png" alt="hero image" />
       </div>
     </div>
+    <!-- search category -->
+    <div id="buttons" class="btns-container">
+      <button class="all-categories button-value">All</button>
+      <button class="men-clothing button-value">Men's Clothing</button>
+      <button class="women-clothing button-value">Women's Clothing</button>
+      <button class="jewelry button-value">Jewelry</button>
+      <button class="electronics button-value">Electronics</button>
+    </div>
     <div class="products-container" id="main-container">
       <!-- products goes here dynamically -->
     </div>
     <div class="product-description" style="display: none">
-      <!-- <div class="desc-image-container">
-                <img src="images/51kzIp0mUnL._AC_SY741_.jpg" alt="product image">
-            </div>
-            <div class="info-container">
-                <h1 class="desc-product-title">Men's Casual Premium Slim Fit T-Shirts</h1>
-                <p class="desc-product-price">$ 22.2</p>
-                <p class="desc-product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nisi illo neque temporibus sequi? Sunt, impedit aperiam deserunt facilis qui praesentium et modi velit tempora aliquam repudiandae suscipit, ab omnis ullam laborum veritatis recusandae sapiente consectetur cupiditate fugit, commodi dolore.</p>
-                <button class="desc-product-AddButton">Add to cart</button>
-            </div> -->
+      <!-- products description goes here dynamically -->
     </div>
+    <div id="wish-list-container"></div>
     <footer>
       <p>Copyright&copy; Ecommerce shop 2023. All rights reserved</p>
     </footer>
 
-    <script src="main.js"></script>
+    <script src="main.js" type="module"></script>
 
     <script type="module">
       // Import the functions you need from the SDKs you need
@@ -123,7 +126,6 @@
       let UserCreds = JSON.parse(sessionStorage.getItem("user-creds"));
       let UserInfo = JSON.parse(sessionStorage.getItem("user-info"));
 
-
       if (UserInfo) {
         console.log(UserInfo);
       } else {
@@ -142,98 +144,36 @@
       };
       signoutbtn.addEventListener("click", signout);
       // ///////////////////////////////////////////////////////////////////////////////////
-     
-  // Function to fetch products
-  function fetchProducts() {
-    return new Promise((resolve) => {
-      const productsRef = ref(db, "products");
-      onValue(productsRef, (snapshot) => {
-        const products = snapshot.val();
-        resolve(products);
-      });
-    });
-  }
 
-// Function to calculate total price of an order
-function calculateTotalPrice(orderItems, products) {
-  let totalPrice = 0;
-
-  orderItems.forEach((item) => {
-    const product = products[item.productKey];
-    if (product) {
-      console.log("Product Key:", item.productKey);
-      console.log("Product Price:", product.price);
-      console.log("Ordered Quantity:", item.quantity);
-      totalPrice += parseFloat(product.price) * item.quantity;
-    }
-  });
-
-  console.log("Total Price:", totalPrice.toFixed(2));
-
-  return totalPrice.toFixed(2);
-}
-
-  // Function to submit a new order
-  async function submitNewOrder() {
-    // Get the currently logged-in user ID from session storage
-    let userCreds = JSON.parse(sessionStorage.getItem("user-creds"));
-    if (!userCreds) {
-      console.error("User not logged in");
-      return;
-    }
-
-    // Fetch the products from the database
-    const products = await fetchProducts();
-
-    // Create a new order object
-    const newOrder = {
-      uid: userCreds.uid,
-      status: "pending",
-      date: new Date().toLocaleDateString(),
-      totalPrice: 0, 
-      orderItems: [{
-          productKey: "-NmSwGObLrBujbxfZFkV", 
-          quantity: 2,
-        },
-        {
-          productKey: "-NmSwOOv5duheI0rId-H", 
-          quantity: 1,
-        },
-      ],
-    };
-
-    // Calculate the total price
-    newOrder.totalPrice = calculateTotalPrice(newOrder.orderItems, products);
-
-    // Save the new order to the database
-    const newOrderRef = push(ref(db, "orders"));
-    set(newOrderRef, newOrder);
-
-    console.log("New order submitted:", newOrder);
-  }
-  document.getElementById('order').addEventListener('click', function () {
-    submitNewOrder();
-      });
-
+      // Function to fetch products
+      function fetchProducts() {
+        return new Promise((resolve) => {
+          const productsRef = ref(db, "products");
+          onValue(productsRef, (snapshot) => {
+            const products = snapshot.val();
+            resolve(products);
+          });
+        });
+      }
 
       // /////////////////////////////////////////////////////////////////////////////
       document.addEventListener("DOMContentLoaded", function () {
-    // Get user role from sessionStorage
-    let userRole = UserInfo.role;
+        // Get user role from sessionStorage
+        let userRole = UserInfo.role;
 
-    // Get the profile link element
-    const profileLink = document.getElementById("profile");
+        // Get the profile link element
+        const profileLink = document.querySelector(".wish-list-icon");
 
-    // Add click event listener to the profile link
-    profileLink.addEventListener("click", function () {
-      // Redirect based on user role
-      if (userRole === "customer") {
-        window.location.href = "/Userprofile/customerProfile.html";
-      } else if (userRole === "admin") {
-        window.location.href = "/Adminprofile/AdminProfile.html";
-      }
-    });
-  });
+        // Add click event listener to the profile link
+        profileLink.addEventListener("click", function () {
+          // Redirect based on user role
+          if (userRole === "customer") {
+            window.location.href = "Userprofile/customerProfile.html";
+          } else if (userRole === "admin") {
+            window.location.href = "Adminprofile/AdminProfile.html";
+          }
+        });
+      });
     </script>
   </body>
 </html>

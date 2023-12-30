@@ -1,12 +1,5 @@
 "use strict";
 
-// ///////////////
-//////////////////////
-///////////////////////
-
-////////////////////
-///////////////////////
-/////////////////////////
 // changing active profile slide//
 function showContent(contentType) {
   document.querySelectorAll(".cell").forEach(function (cell) {
@@ -31,93 +24,93 @@ myDiv.addEventListener("click", function () {
   // Redirect to the desired page
   window.location.href = "../main2.html"; // Replace with your desired URL
 });
-///////////////////////////////////////////////// Display Wishlist ///////////////////////////////////////////////////////////
-const productsContainer = document.getElementById("main-container");
-const productDescContainer = document.querySelector(".product-description");
-const mainPageIcon = document.querySelector(".main-page");
-const wishlistBtn = document.querySelector(".wishlist-btn");
-// Hide zoomed products in wishlist
-wishlistBtn.addEventListener("click", () => {
-  productDescContainer.style.display = "none";
-  productsContainer.style.display = "grid";
-});
-// get data from api
-const getProducts = async function () {
-  const productsArr = [];
-  const response = await fetch("https://fakestoreapi.com/products?limit=10");
-  const data = await response.json();
-  productsArr.push(data);
-  return productsArr;
-};
+// ///////////////////////////////////////////////// Display Wishlist ///////////////////////////////////////////////////////////
+// const productsContainer = document.getElementById("main-container");
+// const productDescContainer = document.querySelector(".product-description");
+// const mainPageIcon = document.querySelector(".main-page");
+// const wishlistBtn = document.querySelector(".wishlist-btn");
+// // Hide zoomed products in wishlist
+// wishlistBtn.addEventListener("click", () => {
+//   productDescContainer.style.display = "none";
+//   productsContainer.style.display = "grid";
+// });
+// // get data from api
+// const getProducts = async function () {
+//   const productsArr = [];
+//   const response = await fetch("https://fakestoreapi.com/products?limit=10");
+//   const data = await response.json();
+//   productsArr.push(data);
+//   return productsArr;
+// };
 // render wishlist
-const displayOnPage = async () => {
-  const products = await getProducts();
-  for (const product of products[0]) {
-    productsContainer.innerHTML += `
-              <div class="single-product" data-id="${product.id}">
-                  <div class="icons-container">
-                      <img src="../images/icons8-add-50.png" alt="add icon" id="add-btn">
-                      <img src="../images/eye (1).png" alt="eye icon" id="eye-btn">
-                  </div>
-                  <div class="product-img-container">
-                      <img src="${product.image}" alt="${product.title}">
-                  </div>
-                  <p class="product-category">${product.category}</p>
-                  <p class="product-title">${product.title}</p>
-                  <p class="product-price">${product.price}</p>
-              </div>
-          `;
-  }
-  // adding product to cart when click on "+" icon
-  const addBtns = document.querySelectorAll("#add-btn");
-  for (let i = 0; i < addBtns.length; i++) {
-    addBtns[i].addEventListener("click", addToCart);
-    function addToCart(e) {
-      for (const product of products[0]) {
-        const currentelement = e.target.parentElement.parentElement;
-        if (parseInt(currentelement.getAttribute("data-id")) === product.id) {
-          // let counter = 1;
-          if (!cartItems.includes(product)) {
-            cartItems.push(product);
-            updateCartDisplay(counter);
-          } else {
-            counter++;
-            updateCartDisplay(counter);
-          }
-        }
-      }
-    }
-  }
+// const displayOnPage = async () => {
+//   const products = await getProducts();
+//   for (const product of products[0]) {
+//     productsContainer.innerHTML += `
+//               <div class="single-product" data-id="${product.id}">
+//                   <div class="icons-container">
+//                       <img src="../images/icons8-add-50.png" alt="add icon" id="add-btn">
+//                       <img src="../images/eye (1).png" alt="eye icon" id="eye-btn">
+//                   </div>
+//                   <div class="product-img-container">
+//                       <img src="${product.image}" alt="${product.title}">
+//                   </div>
+//                   <p class="product-category">${product.category}</p>
+//                   <p class="product-title">${product.title}</p>
+//                   <p class="product-price">${product.price}</p>
+//               </div>
+//           `;
+//   }
+// // adding product to cart when click on "+" icon
+// const addBtns = document.querySelectorAll("#add-btn");
+// for (let i = 0; i < addBtns.length; i++) {
+//   addBtns[i].addEventListener("click", addToCart);
+//   function addToCart(e) {
+//     for (const product of products[0]) {
+//       const currentelement = e.target.parentElement.parentElement;
+//       if (parseInt(currentelement.getAttribute("data-id")) === product.id) {
+//         // let counter = 1;
+//         if (!cartItems.includes(product)) {
+//           cartItems.push(product);
+//           updateCartDisplay(counter);
+//         } else {
+//           counter++;
+//           updateCartDisplay(counter);
+//         }
+//       }
+//     }
+//   }
+// }
 
-  // Open product description in separate page when click on "eye" icon
-  const eyeBtns = document.querySelectorAll("#eye-btn");
-  eyeBtns.forEach((btn) => {
-    btn.addEventListener("click", showingTheCart);
-  });
-  function showingTheCart(e) {
-    productDescContainer.innerHTML = "";
-    productDescContainer.style.display = "flex";
-    productsContainer.style.display = "none";
-    const currentelement = e.target.parentElement.parentElement;
-    const targetProduct = products[0].find(
-      (product) =>
-        product.id === parseInt(currentelement.getAttribute("data-id"))
-    );
-    console.log(targetProduct);
-    productDescContainer.innerHTML = `
-                 <div class="desc-image-container">
-                     <img src="${targetProduct.image}" alt="product image">
-                 </div>
-                 <div class="info-container">
-                     <h1 class="desc-product-title">${targetProduct.title}</h1>
-                     <p class="desc-product-price">$ ${targetProduct.price}</p>
-                     <p class="desc-product-description">${targetProduct.description}</p>
-                     <button class="desc-product-AddButton">Add to cart</button>
-                 </div>
-         `;
-  }
-};
-displayOnPage();
+// // Open product description in separate page when click on "eye" icon
+// const eyeBtns = document.querySelectorAll("#eye-btn");
+// eyeBtns.forEach((btn) => {
+//   btn.addEventListener("click", showingTheCart);
+// });
+// function showingTheCart(e) {
+//   productDescContainer.innerHTML = "";
+//   productDescContainer.style.display = "flex";
+//   productsContainer.style.display = "none";
+//   const currentelement = e.target.parentElement.parentElement;
+//   const targetProduct = products[0].find(
+//     (product) =>
+//       product.id === parseInt(currentelement.getAttribute("data-id"))
+//   );
+//   console.log(targetProduct);
+//   productDescContainer.innerHTML = `
+//               <div class="desc-image-container">
+//                   <img src="${targetProduct.image}" alt="product image">
+//               </div>
+//               <div class="info-container">
+//                   <h1 class="desc-product-title">${targetProduct.title}</h1>
+//                   <p class="desc-product-price">$ ${targetProduct.price}</p>
+//                   <p class="desc-product-description">${targetProduct.description}</p>
+//                   <button class="desc-product-AddButton">Add to cart</button>
+//               </div>
+//       `;
+// }
+// };
+// displayOnPage();
 // *******************************************
 ///////////////////////////////////////// User Profile /////////////////////////////////////////////////////
 const user = {

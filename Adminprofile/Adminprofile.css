@@ -21,6 +21,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  background-image: url("../images/bg_hero.svg");
 }
 nav {
   position: fixed;
@@ -51,6 +52,7 @@ nav img {
   min-height: 100vh;
   background-color: #f5e6df;
   margin-top: 53px;
+  background-image: url("../images/bg_hero.svg");
 }
 .adminContent {
   margin: 20px;

@@ -69,7 +69,7 @@
                 Order Placed: <br />10 December 2023
               </div>
 
-              <div class="order-details">Total: <br />EGP 116.50</div>
+              <div class="order-details">Total: <br />$ 116.50</div>
               <div class="order-details">Order Number: <br />123456789</div>
             </div>
             <div class="order-card-body">
@@ -321,7 +321,7 @@
             orderCard.innerHTML = `
           <div class="order-card-header">
             <div class="order-details">Order Placed: <br />${orderDate}</div>
-            <div class="order-details">Total: <br />EGP ${orderTotalPrice}</div>
+            <div class="order-details">Total: <br />$ ${orderTotalPrice}</div>
             <div class="order-details">Order Number: <br />${orderKey}</div>
           </div>
           <div class="order-card-body">
@@ -351,7 +351,7 @@
                 }" />
                 <div class="order-details">${product.productName}</div>
                 <div class="order-details">Quantity: <br />${quantity}</div>
-                <div class="order-details">Total Price: <br />EGP ${(
+                <div class="order-details">Total Price: <br />$ ${(
                   parseFloat(product.price) * quantity
                 ).toFixed(2)}</div>
               `;
@@ -380,6 +380,97 @@
           renderUserOrders(orders);
         }
       });
+
+      // ////////////////////////////////////////////////////////////////
+      // Retrieve user ID from sessionStorage
+      let userCreds = JSON.parse(sessionStorage.getItem("user-creds"));
+      let userId = userCreds.uid;
+
+      // Function to get wishlist items from Firebase Realtime Database
+      const getWishlistItemsFromFirebase = async (userId) => {
+        const wishlistItemsArr = [];
+        const wishlistRef = ref(db, `wishlist/${userId}`);
+        const snapshot = await get(wishlistRef);
+
+        if (snapshot.exists()) {
+          const wishlistData = snapshot.val();
+          for (const wishlistItemId in wishlistData) {
+            wishlistItemsArr.push(wishlistData[wishlistItemId].productId);
+          }
+        }
+
+        return wishlistItemsArr;
+      };
+      // Function to get products from Firebase Realtime Database
+      const getProductsFromFirebase = async () => {
+        const productsArr = [];
+        const productsRef = ref(db, "products");
+        const snapshot = await get(productsRef);
+
+        if (snapshot.exists()) {
+          const productsData = snapshot.val();
+          for (const productId in productsData) {
+            productsArr.push({ id: productId, ...productsData[productId] });
+          }
+        }
+
+        return productsArr;
+      };
+      // Function to get categories from Firebase Realtime Database
+      const getCategoriesFromFirebase = async () => {
+        const categoriesArr = [];
+        const categoriesRef = ref(db, "categories");
+        const snapshot = await get(categoriesRef);
+
+        if (snapshot.exists()) {
+          const categoriesData = snapshot.val();
+          for (const categoryId in categoriesData) {
+            categoriesArr.push(categoriesData[categoryId]);
+          }
+        }
+
+        return categoriesArr;
+      };
+      const productsContainer = document.getElementById("main-container");
+      // Function to display wishlist items on the page
+      const displayWishlistOnPage = async () => {
+        const wishlistItemIds = await getWishlistItemsFromFirebase(userId);
+        const products = await getProductsFromFirebase(); // Assume you have a function to get all products
+        const categories = await getCategoriesFromFirebase(); // Assume you have a function to get all categories
+
+        // Create a mapping of category IDs to category names
+        const categoryMap = {};
+        categories.forEach((category) => {
+          categoryMap[category.categoryId] = category.category;
+        });
+
+        // Filter products based on wishlistItemIds
+        const wishlistProducts = products.filter((product) =>
+          wishlistItemIds.includes(product.id)
+        );
+
+        // Display wishlist products on the page
+        for (const product of wishlistProducts) {
+          const categoryName = categoryMap[product.category];
+
+          productsContainer.innerHTML += `
+        <div class="single-product" data-id="${product.id}">
+            <div class="icons-container">
+
+            </div>
+            <div class="product-img-container">
+                <img src="${product.imageUrl}" alt="${product.productName}">
+            </div>
+            <p class="product-category">${categoryName}</p>
+            <p class="product-title">${product.productName}</p>
+            <p class="product-price">$ ${product.price}</p>
+        </div>
+    `;
+        }
+      };
+
+      // Call the function to display wishlist items on the page
+      displayWishlistOnPage();
     </script>
   </body>
 </html>
